@@ -1,7 +1,120 @@
 extends ../exten/maintemp.jade
 
 block header
+	.black-layer
+		.inner
+			+list("list-helper", Heading_Top_listMenu, "")
+			+list("language", Language_list, "")
+			+list("feedback-contact", feedback_list, "")
+	.grad-layer
+		.inner
+			.bag
+				img(src="#{img_path}/img-bag.png").bag__img
+				.bag__side
+					.bag__side__text 0 items in your bag
+					.bag__side__button Check Out
+			a.logo ecommerce website
+			form.search.grad-layer_search
+				input(type="text" placeholder="Search website").search__input
+				input(type="submit" value="GO").search__button
+	.menu-box
+		.inner
+			+list("main-menu", main_menu, "")
 
 block content
+	.content__gradient
+	.inner
+		.content-inner
+			.slider
+				img(src="#{img_path}/img1.png").slider__img
+				.slider__box
+					.slider__box__title product title
+					.slider__box__text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras suscipit lacus dapibus ante mattis in adipiscing nibh placerat. Cras bibendum porta diam, non dignissim sapien malesuada vitae. 
+			.side-bar
+				.side-bar__block.slider__block_yellow
+					.side-bar__block__title.grad-layer Browse Categories
+					+list("sidebar-menu", sidebar_menu, "")
+				.side-bar__block.slider__block_grey
+					.side-bar__block__text Join our newsletter list to get the latest updates
+					form.side-bar__block__form
+						fieldset
+							input(type="text").side-bar__block__form__input
+							input(type="submit" value="Join Now").side-bar__block__form__submit.grad-layer
+					.social
+						.social__item.social__item__tw
+							.va
+								a(href="#").social__item__inner Follow us on Twitter
+						.social__item.social__item__fb
+							.va
+								a(href="#").social__item__inner Become our fan on Facebook
+						.social__item.social__item__in
+							.va
+								a(href="#").social__item__inner Connect with us on LinkedIn
+						.social__item.social__item__ml
+							.va
+								a(href="#").social__item__inner Send us your email enquiries
+				.banner
+					a(href="")
+						img(src="#{img_path}/img2.png").banner__img
+					a(href="")
+						img(src="#{img_path}/img3.png").banner__img
+					a(href="")
+						img(src="#{img_path}/img4.png").banner__img
+			.section
+				.section__additional
+					form.section__additional__sort
+						.section__additional__sort__text Sort by:
+						select.section__additional__sort__select
+							option(value="0") Ascending
+						select.section__additional__sort__select
+							option(value="0") Product Name
+						select.section__additional__sort__select
+							option(value="0") Brand Name
+					.section__additional__per-page
+						.section__additional__per-page__text Items per page:
+						a.section__additional__per-page__count 12
+						a.section__additional__per-page__count 20
+						a.section__additional__per-page__count 30
+						a.section__additional__per-page__count.section__additional__per-page__count_current 50
+				.section__article
+					h2.title Our Products
+					+catalog('catalog', Catalog, "")
+					.pagination_box
+						+pagination('pagination', pagination, "")
+				.section__block
+					h2.title featured products
+					.rotator
+						.rotator__inner
+							.rotator__link.rotator__link_prev
+							.rotator__link.rotator__link_next
+							ul.rotator__list
+								li.rotator__list__item
+									img(src="#{img_path}/img7.jpg").rotator__list__item__img
+									a(href="").rotator__list__item__text Elegant MP3 player skin PSD download
+								li.rotator__list__item
+									img(src="#{img_path}/img6.jpg").rotator__list__item__img
+									a(href="").rotator__list__item__text Download shopping bag & icons (PSD & PNG)
+								li.rotator__list__item
+									img(src="#{img_path}/img5.jpg").rotator__list__item__img
+									a(href="").rotator__list__item__text High resolution abstract bokeh background
+								li.rotator__list__item
+									img(src="#{img_path}/img7.jpg").rotator__list__item__img
+									a(href="").rotator__list__item__text Elegant MP3 player skin PSD download
+								li.rotator__list__item
+									img(src="#{img_path}/img6.jpg").rotator__list__item__img
+									a(href="").rotator__list__item__text Download shopping bag & icons (PSD & PNG)
+								li.rotator__list__item
+									img(src="#{img_path}/img5.jpg").rotator__list__item__img
+									a(href="").rotator__list__item__text High resolution abstract bokeh background
 
 block footer
+	.black-layer
+		.inner
+			+list("info-list", footer_info_list, "")
+			form.search.black-layer_search
+				input(type="text" placeholder="Search website").search__input
+				input(type="submit" value="GO").search__button
+
+	.footer-gradient
+		.inner
+			+list("footer-menu", footer_menu_list, "")

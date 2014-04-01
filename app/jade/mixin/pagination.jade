@@ -1,20 +1,20 @@
 mixin pagination (pagination_class, table_array, pagination_class_helper)
 	div(class="#{pagination_class}")
 		if table_array.config.button_first
-			+check_for_object_pagination(pagination_class+"_first", table_array.config.button_first, i)
+			+pagination_item(pagination_class+"__first", table_array.config.button_first, i)
 		if table_array.config.button_prev
-			+check_for_object_pagination(pagination_class+"_prev", table_array.config.button_prev, i)
-		div(class="#{pagination_class}"+"_link_box")
+			+pagination_item(pagination_class+"__prev", table_array.config.button_prev, i)
+		div(class="#{pagination_class}"+"__link_box")
 			each item, i in table_array.massElem
 					+check_for_object_pagination(pagination_class, item, i)
 		if table_array.config.button_next
-			+check_for_object_pagination(pagination_class+"_next", table_array.config.button_next, i)
+			+pagination_item(pagination_class+"__next", table_array.config.button_next, i)
 		if table_array.config.button_last
-			+pagination_item(pagination_class, table_array.config.button_last, i)
+			+pagination_item(pagination_class+"__last", table_array.config.button_last, i)
 
 mixin check_for_object_pagination (pagination_class, item, i)
 	if item != "[object Object]"
-		a(class="#{pagination_class}"+"_link" href="#")
+		a(class="#{pagination_class}"+"__link" href="#")
 			+create_item(pagination_class, item, i)
 	else 
 		if item.no_link
@@ -23,7 +23,7 @@ mixin check_for_object_pagination (pagination_class, item, i)
 		else
 			each item_deep, i in item
 				if item_deep
-					span(class="#{pagination_class}"+"_not_link")
+					span(class="#{pagination_class}"+"__not_link")
 						+create_item(pagination_class, item_deep, i)
 
 
@@ -32,7 +32,7 @@ mixin create_item (pagination_class, item, i)
 
 mixin pagination_item (pagination_class, item)
 	if item.indexOf(".png") != -1 || item.indexOf(".jpg") != -1 || item.indexOf(".gif") != -1
-		img(src="#{item}" class="#{pagination_class}"+"_first")
+		img(src="#{item}" class="#{pagination_class}"+"__first")
 	else
-		a(class="#{pagination_class}"+"_first") 
+		a(class="#{pagination_class}"+"__link" href="")
 			+create_item(pagination_class, item, i)

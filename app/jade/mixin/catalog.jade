@@ -1,0 +1,32 @@
+mixin catalog(catalog_class, catalog_array, addititonal_catalog_class)
+	//- Create UL
+	ul(class=catalog_class+" "+addititonal_catalog_class )
+		//- go to all element in array
+		each item, i in catalog_array.massElem
+			//- if ISSET additional class in code add it
+			if item.additional_class 
+				li(class=catalog_class+"__item"+" "+item.additional_class )
+					//-  go to next mixin
+					+catalog_item_submenu_check(catalog_class, item, catalog_array)
+			else
+				li(class=catalog_class+"__item" )
+					//-  go to next mixin
+					+catalog_item_submenu_check(catalog_class, item, catalog_array)
+
+//- checking for submenu
+mixin catalog_item_submenu_check (list_class, item, catalog_array)
+	if item.submenu
+		+catalog_item(list_class, item, catalog_array)
+		//-+list(list_class+"__submenu", item.submenu, "")
+	else
+		+catalog_item(list_class, item, catalog_array)
+
+mixin catalog_item(list_class, item, catalog_array)
+	//- add span for next words in item with class by key
+	a(href="" class=list_class+"__item__link")
+		img(src="#{item.src}" class=list_class+"__item__link__img")
+	a(class=list_class+"__item__link__name") #{item.val}
+	if item.price
+		div(class=list_class+"__item__link__price") Price: 
+			span(class=list_class+"__item__link__price__inner") #{item.price}
+

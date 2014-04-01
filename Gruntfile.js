@@ -94,7 +94,9 @@ module.exports = function(grunt) {
 		},
 		watch : {
 			jade: {
-				files: ['<%= loc.jade %>/temp/**/*.jade'],
+				files: [
+							'<%= loc.jade %>/temp/**/*.jade'
+						],
 				tasks: ['newer:jade'],
 				options: {
 					spawn: false,
@@ -102,17 +104,24 @@ module.exports = function(grunt) {
 				},
 			},
 			jade_all: {
-				files: ['<%= loc.jade %>/**/*.jade', '<%= loc.jade %>/**/*.json', '!<%= loc.jade %>/temp**/*.jade'],
+				files: [
+							'<%= loc.jade %>/**/*.jade',
+							'<%= loc.jade %>/**/*.json',
+							'!<%= loc.jade %>/temp**/*.jade'
+						],
+
 				tasks: ['jade'],
 				options: {
 					spawn: false,
 					livereload: true,
+					data: grunt.file.readJSON(pathJade)
 				},
 			},
 			scripts : {
 				files : [
 							'Gruntfile.js',
 							'<%= loc.jade %>/**/*.jade',
+							'<%= loc.jade %>/**/*.json',
 							'<%= loc.css %>/**/*.less',
 							'<%= loc.sass %>/**/*.scss',
 							//Ignore files
@@ -150,7 +159,7 @@ module.exports = function(grunt) {
 		},
 		sprite:{
 			all: {
-				src: '<%= loc.images %>/icons/*.png',
+				src: '<%= loc.images %>/for_sprite/*.png',
 				engine: 'pngsmith',
 				cssTemplate: '<%= loc.less %>/lib/sprites/less.template.mustache',
 				destImg: '<%= loc.images %>/spites/spritesheet.png',
@@ -169,9 +178,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-imagemin');	//min images
 	grunt.loadNpmTasks('grunt-contrib-jade');		//convert jade templates to html
 	grunt.loadNpmTasks('grunt-spritesmith');		//make sprites
-	grunt.loadNpmTasks('grunt-newer');				// watch saved file
+	grunt.loadNpmTasks('grunt-newer');				//watch saved file
 
-	grunt.registerTask('default', ['connect', CSSBuilder, 'watch']);
+	grunt.registerTask('default', ['connect', CSSBuilder, 'jade', 'watch']);
 	grunt.registerTask('run', [CSSBuilder, 'jade']);
 	grunt.registerTask('build', [CSSBuilder, 'jade', 'copy', 'imagemin']);
 
